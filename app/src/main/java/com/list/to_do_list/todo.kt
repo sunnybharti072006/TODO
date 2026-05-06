@@ -31,10 +31,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import java.util.UUID
 
-// ─────────────────────────────────────────────
-// DATA MODEL
-// ─────────────────────────────────────────────
-
 enum class Priority(val label: String, val color: Color) {
     LOW("Low", Color(0xFF4CAF50)),
     MEDIUM("Medium", Color(0xFFFF9800)),
@@ -47,10 +43,6 @@ data class Task(
     val priority: Priority = Priority.MEDIUM,
     val isCompleted: Boolean = false
 )
-
-// ─────────────────────────────────────────────
-// VIEWMODEL
-// ─────────────────────────────────────────────
 
 class TaskViewModel : ViewModel() {
     private val _tasks = MutableStateFlow(
@@ -85,9 +77,6 @@ class TaskViewModel : ViewModel() {
     }
 }
 
-// ─────────────────────────────────────────────
-// THEME
-// ─────────────────────────────────────────────
 
 private val LightColorScheme = lightColorScheme(
     primary = Color(0xFF1A73E8),
@@ -135,10 +124,6 @@ fun TodoAppTheme(darkTheme: Boolean, content: @Composable () -> Unit) {
     )
 }
 
-// ─────────────────────────────────────────────
-// MAIN ACTIVITY
-// ─────────────────────────────────────────────
-
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -152,10 +137,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-// ─────────────────────────────────────────────
-// MAIN SCREEN
-// ─────────────────────────────────────────────
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -251,10 +232,6 @@ fun TodoScreen(vm: TaskViewModel) {
     }
 }
 
-// ─────────────────────────────────────────────
-// TOP APP BAR
-// ─────────────────────────────────────────────
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopAppBarSection(isDark: Boolean, onToggleDark: () -> Unit) {
@@ -287,10 +264,6 @@ fun TopAppBarSection(isDark: Boolean, onToggleDark: () -> Unit) {
         )
     )
 }
-
-// ─────────────────────────────────────────────
-// PROGRESS CARD
-// ─────────────────────────────────────────────
 
 @Composable
 fun ProgressCard(completed: Int, total: Int, progress: Float) {
@@ -362,9 +335,6 @@ fun ProgressCard(completed: Int, total: Int, progress: Float) {
     }
 }
 
-// ─────────────────────────────────────────────
-// FILTER ROW
-// ─────────────────────────────────────────────
 
 @Composable
 fun FilterRow(filters: List<String>, selected: String, onSelect: (String) -> Unit) {
@@ -386,9 +356,6 @@ fun FilterRow(filters: List<String>, selected: String, onSelect: (String) -> Uni
     }
 }
 
-// ─────────────────────────────────────────────
-// TASK CARD
-// ─────────────────────────────────────────────
 
 @Composable
 fun TaskCard(task: Task, onToggle: () -> Unit, onDelete: () -> Unit) {
@@ -482,10 +449,6 @@ fun TaskCard(task: Task, onToggle: () -> Unit, onDelete: () -> Unit) {
     }
 }
 
-// ─────────────────────────────────────────────
-// EMPTY STATE
-// ─────────────────────────────────────────────
-
 @Composable
 fun EmptyState(filter: String) {
     Column(
@@ -524,9 +487,6 @@ fun EmptyState(filter: String) {
     }
 }
 
-// ─────────────────────────────────────────────
-// ADD TASK DIALOG
-// ─────────────────────────────────────────────
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
