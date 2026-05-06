@@ -41,6 +41,8 @@ data class TaskEntity(
     val priority: String = "MEDIUM",   // stored as string name
     val isCompleted: Boolean = false
 )
+//build by sunnybharti
+//con - sunnybharti3.142@gmail.com
 
 @Dao
 interface TaskDao {
@@ -57,9 +59,6 @@ interface TaskDao {
     suspend fun deleteTask(task: TaskEntity)
 }
 
-// ─────────────────────────────────────────────
-// ROOM — DATABASE
-// ─────────────────────────────────────────────
 
 @Database(entities = [TaskEntity::class], version = 1, exportSchema = false)
 abstract class TodoDatabase : RoomDatabase() {
@@ -80,9 +79,6 @@ abstract class TodoDatabase : RoomDatabase() {
     }
 }
 
-// ─────────────────────────────────────────────
-// DATA MODEL (UI layer)
-// ─────────────────────────────────────────────
 
 enum class Priority(val label: String, val color: Color) {
     LOW("Low", Color(0xFF4CAF50)),
@@ -112,9 +108,6 @@ fun Task.toEntity() = TaskEntity(
     isCompleted = isCompleted
 )
 
-// ─────────────────────────────────────────────
-// VIEWMODEL
-// ─────────────────────────────────────────────
 
 class TaskViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -128,7 +121,8 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
             started = SharingStarted.WhileSubscribed(5000),
             initialValue = emptyList()
         )
-
+    //build by sunnybharti
+//con - sunnybharti3.142@gmail.com
     private val _isDarkMode = MutableStateFlow(false)
     val isDarkMode: StateFlow<Boolean> = _isDarkMode.asStateFlow()
 
@@ -156,9 +150,6 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
     }
 }
 
-// ─────────────────────────────────────────────
-// THEME
-// ─────────────────────────────────────────────
 
 private val LightColorScheme = lightColorScheme(
     primary = Color(0xFF1A73E8),
@@ -206,9 +197,6 @@ fun TodoAppTheme(darkTheme: Boolean, content: @Composable () -> Unit) {
     )
 }
 
-// ─────────────────────────────────────────────
-// MAIN ACTIVITY
-// ─────────────────────────────────────────────
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -223,17 +211,15 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-// ─────────────────────────────────────────────
-// MAIN SCREEN
-// ─────────────────────────────────────────────
-
+//build by sunnybharti
+//con - sunnybharti3.142@gmail.com
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TodoScreen(vm: TaskViewModel) {
     val tasks by vm.tasks.collectAsState()
     val isDark by vm.isDarkMode.collectAsState()
-
+//build by sunnybharti
+//con - sunnybharti3.142@gmail.com
     var showAddDialog by remember { mutableStateOf(false) }
     var selectedFilter by remember { mutableStateOf("All") }
 
@@ -271,6 +257,8 @@ fun TodoScreen(vm: TaskViewModel) {
                 bottom = padding.calculateBottomPadding() + 96.dp
             ),
             verticalArrangement = Arrangement.spacedBy(12.dp)
+            //build by sunnybharti
+//con - sunnybharti3.142@gmail.com
         ) {
             item {
                 ProgressCard(completed = completedCount, total = tasks.size, progress = progress)
@@ -309,9 +297,6 @@ fun TodoScreen(vm: TaskViewModel) {
     }
 }
 
-// ─────────────────────────────────────────────
-// TOP APP BAR
-// ─────────────────────────────────────────────
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -335,10 +320,6 @@ fun TopAppBarSection(isDark: Boolean, onToggleDark: () -> Unit) {
         colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.surface)
     )
 }
-
-// ─────────────────────────────────────────────
-// PROGRESS CARD
-// ─────────────────────────────────────────────
 
 @Composable
 fun ProgressCard(completed: Int, total: Int, progress: Float) {
@@ -375,11 +356,8 @@ fun ProgressCard(completed: Int, total: Int, progress: Float) {
         }
     }
 }
-
-// ─────────────────────────────────────────────
-// FILTER ROW
-// ─────────────────────────────────────────────
-
+//build by sunnybharti
+//con - sunnybharti3.142@gmail.com
 @Composable
 fun FilterRow(filters: List<String>, selected: String, onSelect: (String) -> Unit) {
     Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
@@ -397,9 +375,6 @@ fun FilterRow(filters: List<String>, selected: String, onSelect: (String) -> Uni
     }
 }
 
-// ─────────────────────────────────────────────
-// TASK CARD
-// ─────────────────────────────────────────────
 
 @Composable
 fun TaskCard(task: Task, onToggle: () -> Unit, onDelete: () -> Unit) {
@@ -460,10 +435,8 @@ fun TaskCard(task: Task, onToggle: () -> Unit, onDelete: () -> Unit) {
     }
 }
 
-// ─────────────────────────────────────────────
-// EMPTY STATE
-// ─────────────────────────────────────────────
-
+//build by sunnybharti
+//con - sunnybharti3.142@gmail.com
 @Composable
 fun EmptyState(filter: String) {
     Column(
@@ -496,9 +469,6 @@ fun EmptyState(filter: String) {
     }
 }
 
-// ─────────────────────────────────────────────
-// ADD TASK DIALOG
-// ─────────────────────────────────────────────
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -568,3 +538,5 @@ fun AddTaskDialog(onDismiss: () -> Unit, onAdd: (String, Priority) -> Unit) {
         }
     )
 }
+//build by sunnybharti
+//con - sunnybharti3.142@gmail.com
