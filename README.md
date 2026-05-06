@@ -60,7 +60,7 @@ This project is designed with a **minimal structure**, where core logic is handl
 1. Clone the repo:
 
    ```bash
-   git clone https://github.com/your-username/todo-app.git
+   git clone https://github.com/sunnybharti072006/TODO.git
    ```
 
 2. Open in Android Studio
